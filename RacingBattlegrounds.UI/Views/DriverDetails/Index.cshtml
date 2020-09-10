@@ -1,0 +1,80 @@
+﻿@model IEnumerable<RacingBattlegrounds.UI.Models.ViewModel.DriverDetailsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Driver Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RaceParticipated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RaceWon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarWithMostWins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarWithMostLosses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackWithMostWins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackWithMostLosses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryWithMostWins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryWithMostLosses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopSpeedDriven)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RaceParticipated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RaceWon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarWithMostWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarWithMostLosses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackWithMostWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackWithMostLosses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryWithMostWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryWithMostLosses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopSpeedDriven)
+        </td>
+    </tr>
+}
+
+</table>

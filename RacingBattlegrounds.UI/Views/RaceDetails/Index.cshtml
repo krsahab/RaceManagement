@@ -1,0 +1,68 @@
+﻿@model IEnumerable<RacingBattlegrounds.UI.Models.ViewModel.RaceDetailsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Race Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EngineCapacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopSpeed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletionTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EngineCapacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopSpeed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompletionTime)
+        </td>
+    </tr>
+}
+
+</table>
