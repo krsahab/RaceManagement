@@ -16,7 +16,7 @@
     <AssemblyName>RacingBattlegrounds.UI</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -243,7 +243,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>14177</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:14177/</IISUrl>
+          <IISUrl>http://localhost/RacingBattlegrounds.UI</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

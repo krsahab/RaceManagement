@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RacingBattlegrounds.DataAccess.DataModels;
 using System.Data.Entity;
-using RacingBattlegrounds.DataAccess.DataModels;
 
 namespace RacingBattlegrounds.DataAccess.DAO
 {
     public class ApplicationDBContext : DbContext
     {
+        public ApplicationDBContext()
+            : base("name=RaceConnectionString")
+        {
+
+        }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Participants> Participants { get; set; }
