@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Race Portal</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,13 +16,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Racing Battlegrounds", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Race Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Race Details", "Index", "RaceDetails")</li>
-                    <li>@Html.ActionLink("Driver Details", "Index", "DriverDetails")</li>
+                    <li>@Html.ActionLink("Car", "Index", "Car")</li>
+                    <li>@Html.ActionLink("Driver", "Index", "Driver")</li>
+                    <li>@Html.ActionLink("Race", "Index", "Race")</li>
+                    <li>@Html.ActionLink("Track", "Index", "Track")</li>
+                    <li>@Html.ActionLink("All Races", "Index", "RaceDetails")</li>
+                    <li>@Html.ActionLink("All Drivers", "Index", "DriverDetails")</li>
                 </ul>
             </div>
         </div>
@@ -31,7 +35,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Race Portal</p>
         </footer>
     </div>
 
