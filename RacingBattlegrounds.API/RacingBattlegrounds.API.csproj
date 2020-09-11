@@ -104,6 +104,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverDetailsController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\RaceDetailsController.cs" />

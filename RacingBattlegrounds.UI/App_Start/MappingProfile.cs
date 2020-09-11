@@ -20,6 +20,8 @@ namespace RacingBattlegrounds.UI.App_Start
             Mapper.CreateMap<TrackViewModel, TrackDTO>();
             Mapper.CreateMap<RaceDTO, RaceViewModel>();
             Mapper.CreateMap<RaceViewModel, RaceDTO>();
+            Mapper.CreateMap<DriverDTO, DriverViewModel>();
+            Mapper.CreateMap<DriverViewModel, DriverDTO>();
         }
     }
 }

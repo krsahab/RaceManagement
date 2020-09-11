@@ -128,6 +128,7 @@
     <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverDetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
@@ -138,6 +139,7 @@
     </Compile>
     <Compile Include="Models\ViewModel\CarViewModel.cs" />
     <Compile Include="Models\ViewModel\DriverDetailsViewModel.cs" />
+    <Compile Include="Models\ViewModel\DriverViewModel.cs" />
     <Compile Include="Models\ViewModel\RaceDetailsViewModel.cs" />
     <Compile Include="Models\ViewModel\RaceViewModel.cs" />
     <Compile Include="Models\ViewModel\TrackViewModel.cs" />
@@ -198,6 +200,11 @@
     <Content Include="Views\Race\Edit.cshtml" />
     <Content Include="Views\Race\Delete.cshtml" />
     <Content Include="Views\Race\Details.cshtml" />
+    <Content Include="Views\Driver\Index.cshtml" />
+    <Content Include="Views\Driver\Details.cshtml" />
+    <Content Include="Views\Driver\Create.cshtml" />
+    <Content Include="Views\Driver\Edit.cshtml" />
+    <Content Include="Views\Driver\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

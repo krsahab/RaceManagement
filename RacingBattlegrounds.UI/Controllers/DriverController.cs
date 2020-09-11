@@ -11,76 +11,76 @@ using System.Web.Mvc;
 
 namespace RacingBattlegrounds.UI.Controllers
 {
-    public class CarController : Controller
+    public class DriverController : Controller
     {
-        // GET: Car
+        // GET: Driver
         public ActionResult Index()
         {
-            IEnumerable<CarViewModel> cars = null;
+            IEnumerable<DriverViewModel> driver = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car");
+                var responseTask = client.GetAsync("driver");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<IEnumerable<CarViewModel>>();
+                    var readTask = result.Content.ReadAsAsync<IEnumerable<DriverViewModel>>();
                     readTask.Wait();
-                    cars = readTask.Result;
+                    driver = readTask.Result;
                 }
                 else
                 {
-                    cars = Enumerable.Empty<CarViewModel>();
+                    driver = Enumerable.Empty<DriverViewModel>();
                     ModelState.AddModelError(string.Empty, Constants.NO_DATA);
                 }
             }
-            return View(cars);
+            return View(driver);
         }
 
-        // GET: Car/Details/5
+        // GET: driver/Details/5
         public ActionResult Details(int id)
         {
-            CarViewModel car = null;
+            DriverViewModel driver = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car?Id=" + id);
+                var responseTask = client.GetAsync("driver?Id=" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<CarViewModel>();
+                    var readTask = result.Content.ReadAsAsync<DriverViewModel>();
                     readTask.Wait();
-                    car = readTask.Result;
+                    driver = readTask.Result;
                 }
                 else
                 {
-                    car = null;
+                    driver = null;
                     ModelState.AddModelError(string.Empty, Constants.NO_DATA);
                 }
             }
-            return View(car);
+            return View(driver);
         }
 
-        // GET: Car/Create
+        // GET: driver/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Car/Create
+        // POST: driver/Create
         [HttpPost]
-        public ActionResult Create(CarViewModel car)
+        public ActionResult Create(DriverViewModel driver)
         {
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                    var responseTask = client.PostAsJsonAsync("Car", Mapper.Map<CarViewModel, CarDTO>(car));
+                    var responseTask = client.PostAsJsonAsync("driver", Mapper.Map<DriverViewModel, DriverDTO>(driver));
                     responseTask.Wait();
 
                     var result = responseTask.Result;
@@ -91,46 +91,46 @@ namespace RacingBattlegrounds.UI.Controllers
                 }
             }
             ModelState.AddModelError(string.Empty, "Error Occured");
-            return View(car);
+            return View(driver);
         }
 
-        // GET: Car/Edit/5
+        // GET: driver/Edit/5
         public ActionResult Edit(int id)
         {
-            CarViewModel car = null;
+            DriverViewModel driver = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car?Id=" + id);
+                var responseTask = client.GetAsync("driver?Id=" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<CarViewModel>();
+                    var readTask = result.Content.ReadAsAsync<DriverViewModel>();
                     readTask.Wait();
-                    car = readTask.Result;
+                    driver = readTask.Result;
                 }
                 else
                 {
-                    car = null;
+                    driver = null;
                     ModelState.AddModelError(string.Empty, Constants.NO_DATA);
                 }
             }
-            return View(car);
+            return View(driver);
         }
 
-        // POST: Car/Edit/5
+        // POST: driver/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarViewModel car)
+        public ActionResult Edit(DriverViewModel driver)
         {
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                    var responseTask = client.PutAsJsonAsync<CarDTO>("Car", Mapper.Map<CarViewModel, CarDTO>(car));
+                    var responseTask = client.PutAsJsonAsync("driver", Mapper.Map<DriverViewModel, DriverDTO>(driver));
                     responseTask.Wait();
 
                     var result = responseTask.Result;
@@ -141,45 +141,45 @@ namespace RacingBattlegrounds.UI.Controllers
                 }
             }
             ModelState.AddModelError(string.Empty, "Error Occured");
-            return View(car);
+            return View(driver);
         }
 
-        // GET: Car/Delete/5
+        // GET: driver/Delete/5
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            CarViewModel car = null;
+            DriverViewModel driver = null;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car?Id=" + id);
+                var responseTask = client.GetAsync("driver?Id=" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<CarViewModel>();
+                    var readTask = result.Content.ReadAsAsync<DriverViewModel>();
                     readTask.Wait();
-                    car = readTask.Result;
+                    driver = readTask.Result;
                 }
                 else
                 {
-                    car = null;
+                    driver = null;
                     ModelState.AddModelError(string.Empty, Constants.NO_DATA);
                 }
             }
-            return View(car);
+            return View(driver);
         }
 
-        // POST: Car/Delete/5
+        // POST: driver/Delete/5
         [HttpPost]
-        public ActionResult DeleteCar()
+        public ActionResult DeleteDriver()
         {
             var Id = Request["Id"];
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.DeleteAsync("Car?Id=" + Id);
+                var responseTask = client.DeleteAsync("driver?Id=" + Id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
