@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using RacingBattlegrounds.BusinessLayer;
 using RacingBattlegrounds.BusinessLayer.DTO;
-using RacingBattlegrounds.BusinessLayer;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace RacingBattlegrounds.API.Controllers
 {

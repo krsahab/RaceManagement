@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RacingBattlegrounds.UI.Models.ViewModel.ParticipantViewModel>
+
+@{
+    ViewBag.Title = "Participants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Participants</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Driver_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Race_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopSpeed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletionTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsWinner)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Race_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopSpeed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompletionTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsWinner)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

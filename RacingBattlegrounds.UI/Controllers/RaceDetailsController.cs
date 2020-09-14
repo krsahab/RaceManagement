@@ -1,12 +1,11 @@
-﻿using System;
+﻿using RacingBattlegrounds.UI.Models.ViewModel;
+using RacingBattlegrounds.UI.Utility;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Net.Http;
 using System.Web.Mvc;
-using RacingBattlegrounds.UI.Models.ViewModel;
-using System.Configuration;
-using RacingBattlegrounds.UI.Utility;
 
 namespace RacingBattlegrounds.UI.Controllers
 {

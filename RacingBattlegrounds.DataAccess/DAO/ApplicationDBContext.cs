@@ -12,7 +12,7 @@ namespace RacingBattlegrounds.DataAccess.DAO
         }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Participants> Participants { get; set; }
+        public DbSet<Participant> Participants { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Track> Tracks { get; set; }
     }

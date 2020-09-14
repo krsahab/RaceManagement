@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using RacingBattlegrounds.BusinessLayer;
 using RacingBattlegrounds.BusinessLayer.DTO;
-using RacingBattlegrounds.BusinessLayer;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace RacingBattlegrounds.API.Controllers
 {
@@ -35,20 +31,20 @@ namespace RacingBattlegrounds.API.Controllers
         /// <summary>
         /// Update Race Details
         /// </summary>
-        /// <param name="car"></param>
+        /// <param name="Race"></param>
         [HttpPut]
-        public void UpdateRaceDetails(RaceDTO car)
+        public void UpdateRaceDetails(RaceDTO Race)
         {
-            race.UpdateRaceDetails(car);
+            race.UpdateRaceDetails(Race);
         }
         /// <summary>
         /// Add New Race
         /// </summary>
-        /// <param name="car"></param>
+        /// <param name="Race"></param>
         [HttpPost]
-        public void AddRace(RaceDTO car)
+        public void AddRace(RaceDTO Race)
         {
-            race.AddRace(car);
+            race.AddRace(Race);
         }
         /// <summary>
         /// Delete an Specific Race

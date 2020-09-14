@@ -60,9 +60,11 @@
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DTO\DriverDetailsDTO.cs" />
     <Compile Include="DTO\DriverDTO.cs" />
+    <Compile Include="DTO\ParticipantDTO.cs" />
     <Compile Include="DTO\RaceDetailsDTO.cs" />
     <Compile Include="DTO\RaceDTO.cs" />
     <Compile Include="DTO\TrackDTO.cs" />
+    <Compile Include="ParticipantBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaceBO.cs" />
     <Compile Include="RaceDetailsBO.cs" />

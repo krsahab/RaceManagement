@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RacingBattlegrounds.DataAccess.DataModels
+﻿namespace RacingBattlegrounds.DataAccess.DataModels
 {
     public class DriverDetailsModel
     {

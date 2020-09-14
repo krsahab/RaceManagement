@@ -1,14 +1,11 @@
-﻿using System;
+﻿using RacingBattlegrounds.UI.Models.ViewModel;
+using RacingBattlegrounds.UI.Utility;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using RacingBattlegrounds.UI.Models.ViewModel;
-using System.Configuration;
-using RacingBattlegrounds.UI.Utility;
 
 namespace RacingBattlegrounds.UI.Controllers
 {
@@ -25,7 +22,7 @@ namespace RacingBattlegrounds.UI.Controllers
                 responseTask.Wait();
 
                 var result = responseTask.Result;
-                if(result.IsSuccessStatusCode)
+                if (result.IsSuccessStatusCode)
                 {
                     var readTask = result.Content.ReadAsAsync<IEnumerable<DriverDetailsViewModel>>();
                     readTask.Wait();

@@ -9,6 +9,7 @@ namespace RacingBattlegrounds.UI.Models.ViewModel
         [Required]
         public String Name { get; set; }
         [Required]
+        [Display(Name = "Engine Capacity")]
         public int EngineCapacity { get; set; }
     }
 }

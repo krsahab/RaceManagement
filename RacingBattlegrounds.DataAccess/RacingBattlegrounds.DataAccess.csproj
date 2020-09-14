@@ -54,6 +54,7 @@
     <Compile Include="DAO\CarDetailsDAO.cs" />
     <Compile Include="DAO\DriverDAO.cs" />
     <Compile Include="DAO\DriverDetailsDAO.cs" />
+    <Compile Include="DAO\ParticipantDAO.cs" />
     <Compile Include="DAO\RaceDAO.cs" />
     <Compile Include="DAO\RaceDetailsDAO.cs" />
     <Compile Include="DAO\ApplicationDBContext.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="DataModels\Driver.cs" />
     <Compile Include="DataModels\DriverDetailsModel.cs" />
     <Compile Include="DataModels\DriverOtherDetailsModel.cs" />
-    <Compile Include="DataModels\Participants.cs" />
+    <Compile Include="DataModels\Participant.cs" />
     <Compile Include="DataModels\Race.cs" />
     <Compile Include="DataModels\Track.cs" />
     <Compile Include="Migrations\202007280656394_Initial.cs" />
@@ -89,6 +90,10 @@
     <Compile Include="Migrations\202007281859507_AlterProc2.designer.cs">
       <DependentUpon>202007281859507_AlterProc2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009121717577_Add_InsertUpdate_Trigger.cs" />
+    <Compile Include="Migrations\202009121717577_Add_InsertUpdate_Trigger.designer.cs">
+      <DependentUpon>202009121717577_Add_InsertUpdate_Trigger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -114,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007281859507_AlterProc2.resx">
       <DependentUpon>202007281859507_AlterProc2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009121717577_Add_InsertUpdate_Trigger.resx">
+      <DependentUpon>202009121717577_Add_InsertUpdate_Trigger.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

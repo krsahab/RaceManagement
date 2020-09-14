@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RacingBattlegrounds.DataAccess.DAO;
-using RacingBattlegrounds.BusinessLayer.DTO;
+﻿using RacingBattlegrounds.BusinessLayer.DTO;
 using RacingBattlegrounds.BusinessLayer.Utility;
+using RacingBattlegrounds.DataAccess.DAO;
+using System.Collections.Generic;
 
 namespace RacingBattlegrounds.BusinessLayer
 {
@@ -13,7 +9,7 @@ namespace RacingBattlegrounds.BusinessLayer
     {
         public IEnumerable<RaceDetailsDTO> GetRaceDetails()
         {
-            return RaceDetailsDAO.GetRaceDetails().ConvertAll(x=>x.ConvertToRaceDetailsDTO());
+            return RaceDetailsDAO.GetRaceDetails().ConvertAll(x => x.ConvertToRaceDetailsDTO());
         }
     }
 }

@@ -1,16 +1,13 @@
-﻿using System;
+﻿using RacingBattlegrounds.DataAccess.DataModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RacingBattlegrounds.DataAccess.DataModels;
 using System.Data.Entity;
+using System.Linq;
 
 namespace RacingBattlegrounds.DataAccess.DAO
 {
     public static class RaceDetailsDAO
     {
-        public static List<Participants> GetRaceDetails()
+        public static List<Participant> GetRaceDetails()
         {
             using (var context = new ApplicationDBContext())
             {
@@ -18,7 +15,7 @@ namespace RacingBattlegrounds.DataAccess.DAO
                     .Include(x => x.Car)
                     .Include(x => x.Driver)
                     .Include(x => x.Race)
-                    .Include(x=>x.Race.Track)
+                    .Include(x => x.Race.Track)
                     .Where(x => x.IsWinner == true)
                     .OrderByDescending(x => x.TopSpeed).ToList();
             }

@@ -106,6 +106,7 @@
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverDetailsController.cs" />
+    <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\RaceDetailsController.cs" />
     <Compile Include="Controllers\TrackController.cs" />

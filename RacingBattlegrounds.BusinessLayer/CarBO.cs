@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using RacingBattlegrounds.BusinessLayer.DTO;
 using RacingBattlegrounds.DataAccess.DAO;
-using AutoMapper;
 using RacingBattlegrounds.DataAccess.DataModels;
+using System.Collections.Generic;
 
 namespace RacingBattlegrounds.BusinessLayer
 {
@@ -24,7 +20,7 @@ namespace RacingBattlegrounds.BusinessLayer
         }
         public void UpdateCarDetails(CarDTO car)
         {
-            CarDetailsDAO.UpdateCarDetails(mapperIP.Map<CarDTO,Car>(car));
+            CarDetailsDAO.UpdateCarDetails(mapperIP.Map<CarDTO, Car>(car));
         }
         public void AddCar(CarDTO car)
         {

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RacingBattlegrounds.BusinessLayer.DTO;
 using RacingBattlegrounds.DataAccess.DataModels;
-using RacingBattlegrounds.BusinessLayer.DTO;
 
 namespace RacingBattlegrounds.BusinessLayer.Utility
 {
     public static class ParticipantExtension
     {
-        public static RaceDetailsDTO ConvertToRaceDetailsDTO(this Participants participant)
+        public static RaceDetailsDTO ConvertToRaceDetailsDTO(this Participant participant)
         {
             return new RaceDetailsDTO()
             {

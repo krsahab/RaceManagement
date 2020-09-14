@@ -1,10 +1,7 @@
-﻿using System;
+﻿using RacingBattlegrounds.DataAccess.DataModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RacingBattlegrounds.DataAccess.DataModels;
 using System.Data.Entity;
+using System.Linq;
 
 namespace RacingBattlegrounds.DataAccess.DAO
 {
@@ -14,21 +11,21 @@ namespace RacingBattlegrounds.DataAccess.DAO
         {
             using (var context = new ApplicationDBContext())
             {
-                return context.Races.Include(x=>x.Track).ToList();
+                return context.Races.Include(x => x.Track).ToList();
             }
         }
         public static Race GetRaceDetails(int Id)
         {
             using (var context = new ApplicationDBContext())
             {
-                return context.Races.Include(x => x.Track).FirstOrDefault(x=>x.Id==Id);
+                return context.Races.Include(x => x.Track).FirstOrDefault(x => x.Id == Id);
             }
         }
         public static void UpdateRaceDetails(Race race)
         {
             using (var context = new ApplicationDBContext())
             {
-                context.Entry(race).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(race).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }

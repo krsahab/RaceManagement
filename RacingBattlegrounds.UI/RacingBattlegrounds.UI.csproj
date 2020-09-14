@@ -131,6 +131,7 @@
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverDetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParticipantController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\RaceDetailsController.cs" />
     <Compile Include="Controllers\TrackController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Models\ViewModel\CarViewModel.cs" />
     <Compile Include="Models\ViewModel\DriverDetailsViewModel.cs" />
     <Compile Include="Models\ViewModel\DriverViewModel.cs" />
+    <Compile Include="Models\ViewModel\ParticipantViewModel.cs" />
     <Compile Include="Models\ViewModel\RaceDetailsViewModel.cs" />
     <Compile Include="Models\ViewModel\RaceViewModel.cs" />
     <Compile Include="Models\ViewModel\TrackViewModel.cs" />
@@ -205,6 +207,11 @@
     <Content Include="Views\Driver\Create.cshtml" />
     <Content Include="Views\Driver\Edit.cshtml" />
     <Content Include="Views\Driver\Delete.cshtml" />
+    <Content Include="Views\Participant\Index.cshtml" />
+    <Content Include="Views\Participant\Details.cshtml" />
+    <Content Include="Views\Participant\Delete.cshtml" />
+    <Content Include="Views\Participant\Edit.cshtml" />
+    <Content Include="Views\Participant\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

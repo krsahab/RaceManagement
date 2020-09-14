@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using RacingBattlegrounds.DataAccess.DataModels;
+﻿using AutoMapper;
 using RacingBattlegrounds.BusinessLayer.DTO;
 using RacingBattlegrounds.DataAccess.DAO;
+using RacingBattlegrounds.DataAccess.DataModels;
+using System.Collections.Generic;
 
 namespace RacingBattlegrounds.BusinessLayer
 {
     public class RaceBO
     {
-        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Race, RaceDTO>().ForMember(x=>x.Track_Id, x=>x.MapFrom(y=>y.Track.Id))));
+        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Race, RaceDTO>().ForMember(x => x.Track_Id, x => x.MapFrom(y => y.Track.Id))));
         Mapper mapperIP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<RaceDTO, Race>().ForMember(x => x.Track, x => x.MapFrom(y => TrackDAO.GetTrackDetails(y.Track_Id)))));
         public IEnumerable<RaceDTO> GetRaces()
         {

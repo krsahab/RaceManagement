@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using RacingBattlegrounds.UI.Models.ViewModel;
+﻿using AutoMapper;
 using RacingBattlegrounds.BusinessLayer.DTO;
+using RacingBattlegrounds.UI.Models.ViewModel;
 
 namespace RacingBattlegrounds.UI.App_Start
 {
-    public class MappingProfile:Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
@@ -22,6 +18,8 @@ namespace RacingBattlegrounds.UI.App_Start
             Mapper.CreateMap<RaceViewModel, RaceDTO>();
             Mapper.CreateMap<DriverDTO, DriverViewModel>();
             Mapper.CreateMap<DriverViewModel, DriverDTO>();
+            Mapper.CreateMap<ParticipantDTO, ParticipantViewModel>();
+            Mapper.CreateMap<ParticipantViewModel, ParticipantDTO>();
         }
     }
 }

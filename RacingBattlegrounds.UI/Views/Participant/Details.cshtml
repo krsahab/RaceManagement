@@ -1,0 +1,66 @@
+﻿@model RacingBattlegrounds.UI.Models.ViewModel.ParticipantViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Participant Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Driver_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Driver_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Race_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Race_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopSpeed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopSpeed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletionTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletionTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsWinner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsWinner)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

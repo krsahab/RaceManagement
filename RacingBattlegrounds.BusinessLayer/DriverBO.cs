@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using RacingBattlegrounds.DataAccess.DataModels;
+﻿using AutoMapper;
 using RacingBattlegrounds.BusinessLayer.DTO;
 using RacingBattlegrounds.DataAccess.DAO;
+using RacingBattlegrounds.DataAccess.DataModels;
+using System.Collections.Generic;
 
 namespace RacingBattlegrounds.BusinessLayer
 {
