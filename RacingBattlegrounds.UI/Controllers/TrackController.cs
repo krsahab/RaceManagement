@@ -45,6 +45,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Track/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(TrackViewModel track)
         {
             if (ModelState.IsValid)
@@ -102,6 +103,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Track/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
             var result = await APIHelper.DeleteDataAsync("Track?Id=" + id);

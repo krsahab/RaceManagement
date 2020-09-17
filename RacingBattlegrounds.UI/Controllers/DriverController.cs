@@ -103,6 +103,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: driver/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteDriver()
         {
             var Id = Request["Id"];

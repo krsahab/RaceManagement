@@ -44,6 +44,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Car/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CarViewModel car)
         {
             if (ModelState.IsValid)
@@ -102,6 +103,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Car/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteCar()
         {
             var Id = Request["Id"];

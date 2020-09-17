@@ -51,6 +51,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Participant/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ParticipantViewModel Participant)
         {
             if (ModelState.IsValid)
@@ -114,6 +115,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Participant/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
             var result = await APIHelper.DeleteDataAsync("Participant?Id=" + id);

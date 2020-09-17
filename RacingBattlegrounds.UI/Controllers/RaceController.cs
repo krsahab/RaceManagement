@@ -50,6 +50,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Race/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RaceViewModel race)
         {
             if (ModelState.IsValid)
@@ -83,6 +84,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Race/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(RaceViewModel race)
         {
             if (ModelState.IsValid)
@@ -111,6 +113,7 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Race/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
             var result = await APIHelper.DeleteDataAsync("Race?Id=" + id);
