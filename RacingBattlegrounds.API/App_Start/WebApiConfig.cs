@@ -2,8 +2,15 @@
 
 namespace RacingBattlegrounds.API
 {
+    /// <summary>
+    /// API Configuration
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Register Configurations
+        /// </summary>
+        /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services

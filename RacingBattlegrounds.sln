@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacingBattlegrounds.API", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacingBattlegrounds.UI", "RacingBattlegrounds.UI\RacingBattlegrounds.UI.csproj", "{BB1635E7-8AC2-43D5-8A8F-51A3518E3F0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacingBattlegrounds.Utility", "Utility\RacingBattlegrounds.Utility.csproj", "{801E1A80-A87C-421E-8711-0635E8576824}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BB1635E7-8AC2-43D5-8A8F-51A3518E3F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB1635E7-8AC2-43D5-8A8F-51A3518E3F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB1635E7-8AC2-43D5-8A8F-51A3518E3F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801E1A80-A87C-421E-8711-0635E8576824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801E1A80-A87C-421E-8711-0635E8576824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801E1A80-A87C-421E-8711-0635E8576824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801E1A80-A87C-421E-8711-0635E8576824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

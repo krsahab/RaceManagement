@@ -5,6 +5,9 @@ using System.Web.Http;
 
 namespace RacingBattlegrounds.API.Controllers
 {
+    /// <summary>
+    /// Driver Controller
+    /// </summary>
     public class DriverController : ApiController
     {
         DriverBO driverObject = new DriverBO();

@@ -65,17 +65,20 @@
     <Compile Include="DTO\RaceDTO.cs" />
     <Compile Include="DTO\TrackDTO.cs" />
     <Compile Include="ParticipantBO.cs" />
+    <Compile Include="ParticipantExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaceBO.cs" />
     <Compile Include="RaceDetailsBO.cs" />
     <Compile Include="TrackBO.cs" />
-    <Compile Include="Utility\Constants.cs" />
-    <Compile Include="Utility\ParticipantExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RacingBattlegrounds.DataAccess\RacingBattlegrounds.DataAccess.csproj">
       <Project>{8071fd38-4499-4911-98a2-53ddf10a05ed}</Project>
       <Name>RacingBattlegrounds.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\RacingBattlegrounds.Utility.csproj">
+      <Project>{801e1a80-a87c-421e-8711-0635e8576824}</Project>
+      <Name>RacingBattlegrounds.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

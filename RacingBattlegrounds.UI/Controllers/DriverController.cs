@@ -1,67 +1,38 @@
-﻿using AutoMapper;
-using RacingBattlegrounds.BusinessLayer.DTO;
+﻿using Newtonsoft.Json;
 using RacingBattlegrounds.UI.Models.ViewModel;
-using RacingBattlegrounds.UI.Utility;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Utility;
 
 namespace RacingBattlegrounds.UI.Controllers
 {
     public class DriverController : Controller
     {
         // GET: Driver
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            IEnumerable<DriverViewModel> driver = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("driver");
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<IEnumerable<DriverViewModel>>();
-                    readTask.Wait();
-                    driver = readTask.Result;
-                }
-                else
-                {
-                    driver = Enumerable.Empty<DriverViewModel>();
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            IEnumerable<DriverViewModel> driver = Enumerable.Empty<DriverViewModel>();
+            var result = await APIHelper.GetDataAsync("driver");
+            if (result.IsSuccessStatusCode)
+                driver = result.Content.ReadAsAsync<IEnumerable<DriverViewModel>>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(driver);
         }
 
         // GET: driver/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             DriverViewModel driver = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("driver?Id=" + id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<DriverViewModel>();
-                    readTask.Wait();
-                    driver = readTask.Result;
-                }
-                else
-                {
-                    driver = null;
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            var result = await APIHelper.GetDataAsync("driver?Id=" + id);
+            if (result.IsSuccessStatusCode)
+                driver = result.Content.ReadAsAsync<DriverViewModel>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(driver);
         }
 
@@ -73,72 +44,45 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: driver/Create
         [HttpPost]
-        public ActionResult Create(DriverViewModel driver)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(DriverViewModel driver)
         {
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                    var responseTask = client.PostAsJsonAsync("driver", Mapper.Map<DriverViewModel, DriverDTO>(driver));
-                    responseTask.Wait();
-
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
+                var data = JsonConvert.SerializeObject(driver);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var result = await APIHelper.PostDataAsync("driver", content);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
             ModelState.AddModelError(string.Empty, "Error Occured");
             return View(driver);
         }
 
         // GET: driver/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             DriverViewModel driver = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("driver?Id=" + id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<DriverViewModel>();
-                    readTask.Wait();
-                    driver = readTask.Result;
-                }
-                else
-                {
-                    driver = null;
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            var result = await APIHelper.GetDataAsync("driver?Id=" + id);
+            if (result.IsSuccessStatusCode)
+                driver = result.Content.ReadAsAsync<DriverViewModel>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(driver);
         }
 
         // POST: driver/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DriverViewModel driver)
+        public async Task<ActionResult> Edit(DriverViewModel driver)
         {
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                    var responseTask = client.PutAsJsonAsync("driver", Mapper.Map<DriverViewModel, DriverDTO>(driver));
-                    responseTask.Wait();
-
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
+                var data = JsonConvert.SerializeObject(driver);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var result = await APIHelper.PutDataAsync("driver", content);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
             ModelState.AddModelError(string.Empty, "Error Occured");
             return View(driver);
@@ -146,48 +90,26 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // GET: driver/Delete/5
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             DriverViewModel driver = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("driver?Id=" + id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<DriverViewModel>();
-                    readTask.Wait();
-                    driver = readTask.Result;
-                }
-                else
-                {
-                    driver = null;
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            var result = await APIHelper.GetDataAsync("driver?Id=" + id);
+            if (result.IsSuccessStatusCode)
+                driver = result.Content.ReadAsAsync<DriverViewModel>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(driver);
         }
 
         // POST: driver/Delete/5
         [HttpPost]
-        public ActionResult DeleteDriver()
+        public async Task<ActionResult> DeleteDriver()
         {
             var Id = Request["Id"];
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.DeleteAsync("driver?Id=" + Id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
+            var result = await APIHelper.DeleteDataAsync("driver?Id=" + Id);
+            if (result.IsSuccessStatusCode)
+                return RedirectToAction("Index");
+            ModelState.AddModelError(string.Empty, "Error Occured");
             return View(Id);
         }
     }

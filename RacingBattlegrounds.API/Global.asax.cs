@@ -7,6 +7,9 @@ using System.Web.Routing;
 
 namespace RacingBattlegrounds.API
 {
+    /// <summary>
+    /// Global.asax
+    /// </summary>
     public class WebApiApplication : System.Web.HttpApplication
     {
         /// <summary>

@@ -1,67 +1,38 @@
-﻿using AutoMapper;
-using RacingBattlegrounds.BusinessLayer.DTO;
+﻿using Newtonsoft.Json;
 using RacingBattlegrounds.UI.Models.ViewModel;
-using RacingBattlegrounds.UI.Utility;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Utility;
 
 namespace RacingBattlegrounds.UI.Controllers
 {
     public class CarController : Controller
     {
         // GET: Car
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            IEnumerable<CarViewModel> cars = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car");
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<IEnumerable<CarViewModel>>();
-                    readTask.Wait();
-                    cars = readTask.Result;
-                }
-                else
-                {
-                    cars = Enumerable.Empty<CarViewModel>();
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            IEnumerable<CarViewModel> cars = Enumerable.Empty<CarViewModel>();
+            var result = await APIHelper.GetDataAsync("Car");
+            if (result.IsSuccessStatusCode)
+                cars = result.Content.ReadAsAsync<IEnumerable<CarViewModel>>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(cars);
         }
 
         // GET: Car/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
             CarViewModel car = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car?Id=" + id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<CarViewModel>();
-                    readTask.Wait();
-                    car = readTask.Result;
-                }
-                else
-                {
-                    car = null;
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            var result = await APIHelper.GetDataAsync("Car?Id=" + id);
+            if (result.IsSuccessStatusCode)
+                car = result.Content.ReadAsAsync<CarViewModel>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(car);
         }
 
@@ -73,72 +44,44 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // POST: Car/Create
         [HttpPost]
-        public ActionResult Create(CarViewModel car)
+        public async Task<ActionResult> Create(CarViewModel car)
         {
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                    var responseTask = client.PostAsJsonAsync("Car", Mapper.Map<CarViewModel, CarDTO>(car));
-                    responseTask.Wait();
-
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
+                var data = JsonConvert.SerializeObject(car);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var result = await APIHelper.PostDataAsync("Car", content);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
             ModelState.AddModelError(string.Empty, "Error Occured");
             return View(car);
         }
 
         // GET: Car/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             CarViewModel car = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car?Id=" + id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<CarViewModel>();
-                    readTask.Wait();
-                    car = readTask.Result;
-                }
-                else
-                {
-                    car = null;
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            var result = await APIHelper.GetDataAsync("Car?Id=" + id);
+            if (result.IsSuccessStatusCode)
+                car = result.Content.ReadAsAsync<CarViewModel>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(car);
         }
 
         // POST: Car/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CarViewModel car)
+        public async Task<ActionResult> Edit(CarViewModel car)
         {
             if (ModelState.IsValid)
             {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                    var responseTask = client.PutAsJsonAsync<CarDTO>("Car", Mapper.Map<CarViewModel, CarDTO>(car));
-                    responseTask.Wait();
-
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
+                var data = JsonConvert.SerializeObject(car);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var result = await APIHelper.PutDataAsync("Car", content);
+                if (result.IsSuccessStatusCode)
+                    return RedirectToAction("Index");
             }
             ModelState.AddModelError(string.Empty, "Error Occured");
             return View(car);
@@ -146,48 +89,26 @@ namespace RacingBattlegrounds.UI.Controllers
 
         // GET: Car/Delete/5
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             CarViewModel car = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.GetAsync("Car?Id=" + id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<CarViewModel>();
-                    readTask.Wait();
-                    car = readTask.Result;
-                }
-                else
-                {
-                    car = null;
-                    ModelState.AddModelError(string.Empty, Constants.NO_DATA);
-                }
-            }
+            var result = await APIHelper.GetDataAsync("Car?Id=" + id);
+            if (result.IsSuccessStatusCode)
+                car = result.Content.ReadAsAsync<CarViewModel>().Result;
+            else
+                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
             return View(car);
         }
 
         // POST: Car/Delete/5
         [HttpPost]
-        public ActionResult DeleteCar()
+        public async Task<ActionResult> DeleteCar()
         {
             var Id = Request["Id"];
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["APIBaseAddress"]);
-                var responseTask = client.DeleteAsync("Car?Id=" + Id);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
+            var result = await APIHelper.DeleteDataAsync("Car?Id=" + Id);
+            if (result.IsSuccessStatusCode)
+                return RedirectToAction("Index");
+            ModelState.AddModelError(string.Empty, "Error Occured");
             return View(Id);
         }
     }
