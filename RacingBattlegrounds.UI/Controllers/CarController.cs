@@ -2,6 +2,7 @@
 using RacingBattlegrounds.UI.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,23 @@ namespace RacingBattlegrounds.UI.Controllers
             if (result.IsSuccessStatusCode)
                 cars = result.Content.ReadAsAsync<IEnumerable<CarViewModel>>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             return View(cars);
         }
 
         // GET: Car/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Details(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             CarViewModel car = null;
             var result = await APIHelper.GetDataAsync("Car?Id=" + id);
             if (result.IsSuccessStatusCode)
                 car = result.Content.ReadAsAsync<CarViewModel>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            if (car == null)
+                return new HttpNotFoundResult(Constants.NO_DATA);
             return View(car);
         }
 
@@ -54,20 +59,25 @@ namespace RacingBattlegrounds.UI.Controllers
                 var result = await APIHelper.PostDataAsync("Car", content);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
-            ModelState.AddModelError(string.Empty, "Error Occured");
+            ModelState.AddModelError(string.Empty, Constants.BAD_DATA);
             return View(car);
         }
 
         // GET: Car/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             CarViewModel car = null;
             var result = await APIHelper.GetDataAsync("Car?Id=" + id);
             if (result.IsSuccessStatusCode)
                 car = result.Content.ReadAsAsync<CarViewModel>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            if (car == null)
+                return new HttpNotFoundResult(Constants.NO_DATA);
             return View(car);
         }
 
@@ -83,21 +93,26 @@ namespace RacingBattlegrounds.UI.Controllers
                 var result = await APIHelper.PutDataAsync("Car", content);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
-            ModelState.AddModelError(string.Empty, "Error Occured");
+            ModelState.AddModelError(string.Empty, Constants.BAD_DATA);
             return View(car);
         }
 
         // GET: Car/Delete/5
         [HttpGet]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             CarViewModel car = null;
             var result = await APIHelper.GetDataAsync("Car?Id=" + id);
             if (result.IsSuccessStatusCode)
                 car = result.Content.ReadAsAsync<CarViewModel>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            if (car == null)
+                return new HttpNotFoundResult(Constants.NO_DATA);
             return View(car);
         }
 
@@ -107,10 +122,12 @@ namespace RacingBattlegrounds.UI.Controllers
         public async Task<ActionResult> DeleteCar()
         {
             var Id = Request["Id"];
+            if (Id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var result = await APIHelper.DeleteDataAsync("Car?Id=" + Id);
             if (result.IsSuccessStatusCode)
                 return RedirectToAction("Index");
-            ModelState.AddModelError(string.Empty, "Error Occured");
+            ModelState.AddModelError(string.Empty, Constants.ERROR);
             return View(Id);
         }
     }

@@ -2,6 +2,7 @@
 using RacingBattlegrounds.UI.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,23 @@ namespace RacingBattlegrounds.UI.Controllers
             if (result.IsSuccessStatusCode)
                 races = result.Content.ReadAsAsync<IEnumerable<RaceViewModel>>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             return View(races);
         }
 
         // GET: Race/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Details(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             RaceViewModel races = null;
             var result = await APIHelper.GetDataAsync("Race/" + id);
             if (result.IsSuccessStatusCode)
                 races = result.Content.ReadAsAsync<RaceViewModel>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            if (races == null)
+                return new HttpNotFoundResult(Constants.NO_DATA);
             return View(races);
         }
 
@@ -60,25 +65,32 @@ namespace RacingBattlegrounds.UI.Controllers
                 var result = await APIHelper.PostDataAsync("Race", content);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
-            ModelState.AddModelError(string.Empty, "Error Occured");
+            ModelState.AddModelError(string.Empty, Constants.BAD_DATA);
             return View(race);
         }
 
         // GET: Race/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             RaceViewModel races = null;
             IEnumerable<TrackViewModel> tracks = Enumerable.Empty<TrackViewModel>();
             var result = await APIHelper.GetDataAsync("Race?Id=" + id);
             if (result.IsSuccessStatusCode)
             {
                 races = result.Content.ReadAsAsync<RaceViewModel>().Result;
+                if (races == null)
+                    return new HttpNotFoundResult(Constants.NO_DATA);
                 var trackResult = await APIHelper.GetDataAsync("Track");
                 if (trackResult.IsSuccessStatusCode)
                     tracks = trackResult.Content.ReadAsAsync<IEnumerable<TrackViewModel>>().Result;
                 races.Tracks = new SelectList(tracks, "Id", "Name");
             }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             return View(races);
         }
 
@@ -94,32 +106,39 @@ namespace RacingBattlegrounds.UI.Controllers
                 var result = await APIHelper.PutDataAsync("Race", content);
                 if (result.IsSuccessStatusCode)
                     return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
-            ModelState.AddModelError(string.Empty, "Error Occured");
+            ModelState.AddModelError(string.Empty, Constants.BAD_DATA);
             return View(race);
         }
 
         // GET: Race/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int? id)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             RaceViewModel races = null;
             var result = await APIHelper.GetDataAsync("Race?Id=" + id);
             if (result.IsSuccessStatusCode)
                 races = result.Content.ReadAsAsync<RaceViewModel>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            if (races == null)
+                return new HttpNotFoundResult(Constants.NO_DATA);
             return View(races);
         }
 
         // POST: Race/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(int? id, FormCollection collection)
         {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var result = await APIHelper.DeleteDataAsync("Race?Id=" + id);
             if (result.IsSuccessStatusCode)
                 return RedirectToAction("Index");
-            ModelState.AddModelError(string.Empty, "Error Occured");
+            ModelState.AddModelError(string.Empty, Constants.ERROR);
             return View(id);
         }
     }

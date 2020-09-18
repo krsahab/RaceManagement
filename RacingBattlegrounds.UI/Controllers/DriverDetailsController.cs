@@ -1,6 +1,7 @@
 ﻿using RacingBattlegrounds.UI.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -18,7 +19,7 @@ namespace RacingBattlegrounds.UI.Controllers
             if (result.IsSuccessStatusCode)
                 driverDetails = result.Content.ReadAsAsync<IEnumerable<DriverDetailsViewModel>>().Result;
             else
-                ModelState.AddModelError(string.Empty, Constants.NO_DATA);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             return View(driverDetails);
         }
     }
