@@ -94,6 +94,10 @@
     <Compile Include="Migrations\202009121717577_Add_InsertUpdate_Trigger.designer.cs">
       <DependentUpon>202009121717577_Add_InsertUpdate_Trigger.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009180734238_202009121717577_Add_InsertUpdate_Trigger.cs" />
+    <Compile Include="Migrations\202009180734238_202009121717577_Add_InsertUpdate_Trigger.designer.cs">
+      <DependentUpon>202009180734238_202009121717577_Add_InsertUpdate_Trigger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009121717577_Add_InsertUpdate_Trigger.resx">
       <DependentUpon>202009121717577_Add_InsertUpdate_Trigger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009180734238_202009121717577_Add_InsertUpdate_Trigger.resx">
+      <DependentUpon>202009180734238_202009121717577_Add_InsertUpdate_Trigger.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
