@@ -10,7 +10,9 @@ namespace RacingBattlegrounds.UI.Models.ViewModel
         public string Name { get; set; }
         [Required]
         [Display(Name = "Track Id")]
-        public int Track_Id { get; set; }
+        public int TrackId { get; set; }
+        [Display(Name = "Track Name")]
+        public string TrackName { get; set; }
         public SelectList Tracks { get; set; }
         [Required]
         [Display(Name = "Engine Capacity")]

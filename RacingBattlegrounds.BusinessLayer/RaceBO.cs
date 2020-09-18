@@ -8,8 +8,10 @@ namespace RacingBattlegrounds.BusinessLayer
 {
     public class RaceBO
     {
-        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Race, RaceDTO>().ForMember(x => x.Track_Id, x => x.MapFrom(y => y.Track.Id))));
-        Mapper mapperIP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<RaceDTO, Race>().ForMember(x => x.Track, x => x.MapFrom(y => TrackDAO.GetTrackDetails(y.Track_Id)))));
+        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Race, RaceDTO>()
+        .ForMember(d => d.TrackId, x => x.MapFrom(y => y.Track.Id))
+        .ForMember(d => d.TrackName, x => x.MapFrom(y => y.Track.Name))));
+        Mapper mapperIP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<RaceDTO, Race>().ForMember(d => d.Track, x => x.MapFrom(y => TrackDAO.GetTrackDetails(y.TrackId)))));
         public IEnumerable<RaceDTO> GetRaces()
         {
             return mapperOP.Map<IEnumerable<Race>, IEnumerable<RaceDTO>>(RaceDAO.GetRaces());

@@ -14,7 +14,8 @@ namespace RacingBattlegrounds.DataAccess.DAO
                 return context.Participants
                     .Include(x => x.Driver)
                     .Include(x => x.Car)
-                    .Include(x => x.Race).ToList();
+                    .Include(x => x.Race)
+                    .Include(x => x.Race.Track).ToList();
             }
         }
         public static Participant GetParticipantDetails(int Id)
@@ -24,14 +25,24 @@ namespace RacingBattlegrounds.DataAccess.DAO
                 return context.Participants
                     .Include(x => x.Driver)
                     .Include(x => x.Car)
-                    .Include(x => x.Race).FirstOrDefault(x => x.Id == Id);
+                    .Include(x => x.Race)
+                    .Include(x => x.Race.Track)
+                    .FirstOrDefault(x => x.Id == Id);
             }
         }
         public static void UpdateParticipantDetails(Participant Participant)
         {
             using (var context = new ApplicationDBContext())
             {
-                context.Entry(Participant).State = System.Data.Entity.EntityState.Modified;
+                var participant = context.Participants
+                    .Include(x => x.Driver)
+                    .Include(x => x.Car)
+                    .Include(x => x.Race)
+                    .FirstOrDefault(x => x.Id == Participant.Id);
+                context.Entry(participant).CurrentValues.SetValues(Participant);
+                participant.Driver = Participant.Driver;
+                participant.Car = Participant.Car;
+                participant.Race = Participant.Race;
                 context.SaveChanges();
             }
         }

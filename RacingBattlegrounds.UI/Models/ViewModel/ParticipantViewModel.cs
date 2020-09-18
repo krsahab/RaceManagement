@@ -8,16 +8,22 @@ namespace RacingBattlegrounds.UI.Models.ViewModel
         [Display(Name = "Participant Id")]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Driver Id")]
-        public int Driver_Id { get; set; }
+        [Display(Name = "Driver")]
+        public int DriverId { get; set; }
+        [Display(Name = "Driver Name")]
+        public string DriverName { get; set; }
         public SelectList Drivers { get; set; }
         [Required]
-        [Display(Name = "Race Id")]
-        public int Race_Id { get; set; }
+        [Display(Name = "Race")]
+        public int RaceId { get; set; }
+        [Display(Name = "Race Name")]
+        public string RaceName { get; set; }
         public SelectList Races { get; set; }
         [Required]
-        [Display(Name = "Car Id")]
-        public int Car_Id { get; set; }
+        [Display(Name = "Car")]
+        public int CarId { get; set; }
+        [Display(Name = "Car name")]
+        public string CarName { get; set; }
         public SelectList Cars { get; set; }
         [Required]
         [Display(Name = "Top Speed")]

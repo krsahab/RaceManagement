@@ -8,8 +8,17 @@ namespace RacingBattlegrounds.BusinessLayer
 {
     public class ParticipantBO
     {
-        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Participant, ParticipantDTO>()));
-        Mapper mapperIP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<ParticipantDTO, Participant>()));
+        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Participant, ParticipantDTO>()
+        .ForMember(d => d.DriverId, x => x.MapFrom(y => y.Driver.Id))
+        .ForMember(d => d.DriverName, x => x.MapFrom(y => y.Driver.Name))
+        .ForMember(d => d.CarId, x => x.MapFrom(y => y.Car.Id))
+        .ForMember(d => d.CarName, x => x.MapFrom(y => y.Car.Name))
+        .ForMember(d => d.RaceId, x => x.MapFrom(y => y.Race.Id))
+        .ForMember(d => d.RaceName, x => x.MapFrom(y => y.Race.Name))));
+        Mapper mapperIP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<ParticipantDTO, Participant>()
+        .ForMember(d => d.Race, x => x.MapFrom(y => RaceDAO.GetRaceDetails(y.RaceId)))
+        .ForMember(d => d.Driver, x => x.MapFrom(y => DriverDAO.GetDriverDetails(y.DriverId)))
+        .ForMember(d => d.Car, x => x.MapFrom(y => CarDetailsDAO.GetCarDetails(y.CarId)))));
         public IEnumerable<ParticipantDTO> GetParticipants()
         {
             return mapperOP.Map<IEnumerable<Participant>, IEnumerable<ParticipantDTO>>(ParticipantDAO.GetParticipants());

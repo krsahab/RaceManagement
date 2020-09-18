@@ -16,26 +16,26 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Driver_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DriverId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Driver_Id, Model.Drivers, "--Please select--", new { @class = "form-control search-select" })
-                @Html.ValidationMessageFor(model => model.Driver_Id, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.DriverId, Model.Drivers, "--Please select--", new { @class = "form-control search-select" })
+                @Html.ValidationMessageFor(model => model.DriverId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Race_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RaceId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Race_Id, Model.Races, "--Please select--", new { @class = "form-control search-select" })
-                @Html.ValidationMessageFor(model => model.Race_Id, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.RaceId, Model.Races, "--Please select--", new { @class = "form-control search-select" })
+                @Html.ValidationMessageFor(model => model.RaceId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Car_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CarId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Car_Id, Model.Cars, "--Please select--", new { @class = "form-control search-select" })
-                @Html.ValidationMessageFor(model => model.Car_Id, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.CarId, Model.Cars, "--Please select--", new { @class = "form-control search-select" })
+                @Html.ValidationMessageFor(model => model.CarId, "", new { @class = "text-danger" })
             </div>
         </div>
 

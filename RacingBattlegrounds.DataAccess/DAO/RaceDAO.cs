@@ -25,7 +25,9 @@ namespace RacingBattlegrounds.DataAccess.DAO
         {
             using (var context = new ApplicationDBContext())
             {
-                context.Entry(race).State = EntityState.Modified;
+                var Race = context.Races.Include(x => x.Track).FirstOrDefault(x => x.Id == race.Id);
+                context.Entry(Race).CurrentValues.SetValues(race);
+                Race.Track = race.Track;
                 context.SaveChanges();
             }
         }
