@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RacingBattlegrounds.UI.Models.ViewModel
 {
     public class RaceDetailsViewModel
     {
+        public string Name { get; set; }
         [Display(Name = "City Name")]
         public string City { get; set; }
         [Display(Name = "Track Name")]
@@ -12,13 +14,6 @@ namespace RacingBattlegrounds.UI.Models.ViewModel
         public int TrackLength { get; set; }
         [Display(Name = "Engine Capacity")]
         public int EngineCapacity { get; set; }
-        [Display(Name = "Car Name")]
-        public string CarName { get; set; }
-        [Display(Name = "Driver Name")]
-        public string DriverName { get; set; }
-        [Display(Name = "Top Speed")]
-        public float TopSpeed { get; set; }
-        [Display(Name = "Completion Time")]
-        public int CompletionTime { get; set; }
+        public IEnumerable<ParticipantViewModel> Winners { get; set; }
     }
 }

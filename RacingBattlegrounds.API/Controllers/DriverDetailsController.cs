@@ -10,6 +10,7 @@ namespace RacingBattlegrounds.API.Controllers
     /// </summary>
     public class DriverDetailsController : ApiController
     {
+        DriverDetailsBO driverDetails = new DriverDetailsBO();
         /// <summary>
         /// Get Driver Details
         /// </summary>
@@ -18,7 +19,6 @@ namespace RacingBattlegrounds.API.Controllers
         [HttpGet]
         public IEnumerable<DriverDetailsDTO> GetDriverDetails()
         {
-            DriverDetailsBO driverDetails = new DriverDetailsBO();
             return driverDetails.GetDriverDetails();
         }
     }

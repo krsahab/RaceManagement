@@ -1,23 +1,32 @@
-﻿using AutoMapper;
-using RacingBattlegrounds.BusinessLayer.DTO;
+﻿using RacingBattlegrounds.BusinessLayer.DTO;
 using RacingBattlegrounds.DataAccess.DAO;
-using RacingBattlegrounds.DataAccess.DataModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RacingBattlegrounds.BusinessLayer
 {
     public class RaceDetailsBO
     {
-        Mapper mapperOP = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Participant, RaceDetailsDTO>()
-        .ForMember(d => d.CarName, x => x.MapFrom(y => y.Car.Name))
-        .ForMember(d => d.City, x => x.MapFrom(y => y.Race.Track.City))
-        .ForMember(d => d.DriverName, x => x.MapFrom(y => y.Driver.Name))
-        .ForMember(d => d.EngineCapacity, x => x.MapFrom(y => y.Race.EngineCapacity))
-        .ForMember(d => d.TrackLength, x => x.MapFrom(y => y.Race.Track.Length))
-        .ForMember(d => d.TrackName, x => x.MapFrom(y => y.Race.Track.Name))));
         public IEnumerable<RaceDetailsDTO> GetRaceDetails()
         {
-            return mapperOP.Map<IEnumerable<Participant>, IEnumerable<RaceDetailsDTO>>(RaceDetailsDAO.GetRaceDetails());
+            ParticipantBO participantBO = new ParticipantBO();
+            var result = RaceDAO.GetRaces()
+                .Select(x => new { race = x, winner = participantBO.GetParticipants().Where(y => y.RaceId == x.Id && y.IsWinner) });
+            var raceDetails = new List<RaceDetailsDTO>();
+            foreach (var race in result)
+            {
+                RaceDetailsDTO raceDetailsDTO = new RaceDetailsDTO
+                {
+                    Name = race.race.Name,
+                    TrackName = race.race.Track.Name,
+                    EngineCapacity = race.race.EngineCapacity,
+                    City = race.race.Track.City,
+                    TrackLength = race.race.Track.Length,
+                    Winners = race.winner?.ToList()
+                };
+                raceDetails.Add(raceDetailsDTO);
+            }
+            return raceDetails;
         }
     }
 }

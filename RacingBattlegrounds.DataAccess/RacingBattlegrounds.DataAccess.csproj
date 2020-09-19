@@ -56,7 +56,6 @@
     <Compile Include="DAO\DriverDetailsDAO.cs" />
     <Compile Include="DAO\ParticipantDAO.cs" />
     <Compile Include="DAO\RaceDAO.cs" />
-    <Compile Include="DAO\RaceDetailsDAO.cs" />
     <Compile Include="DAO\ApplicationDBContext.cs" />
     <Compile Include="DAO\TrackDAO.cs" />
     <Compile Include="DataModels\Car.cs" />

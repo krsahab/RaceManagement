@@ -10,6 +10,7 @@ namespace RacingBattlegrounds.API.Controllers
     /// </summary>
     public class RaceDetailsController : ApiController
     {
+        RaceDetailsBO raceDetails = new RaceDetailsBO();
         /// <summary>
         /// Get Race Details
         /// </summary>
@@ -18,7 +19,6 @@ namespace RacingBattlegrounds.API.Controllers
         [HttpGet]
         public IEnumerable<RaceDetailsDTO> GetRaceDetails()
         {
-            RaceDetailsBO raceDetails = new RaceDetailsBO();
             return raceDetails.GetRaceDetails();
         }
     }

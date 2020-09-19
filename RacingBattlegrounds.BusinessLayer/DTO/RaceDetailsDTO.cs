@@ -1,14 +1,14 @@
-﻿namespace RacingBattlegrounds.BusinessLayer.DTO
+﻿using System.Collections.Generic;
+
+namespace RacingBattlegrounds.BusinessLayer.DTO
 {
     public class RaceDetailsDTO
     {
-        public string City { get; set; }
+        public string Name { get; set; }
         public string TrackName { get; set; }
-        public int TrackLength { get; set; }
         public int EngineCapacity { get; set; }
-        public string CarName { get; set; }
-        public string DriverName { get; set; }
-        public float TopSpeed { get; set; }
-        public int CompletionTime { get; set; }
+        public string City { get; set; }
+        public int TrackLength { get; set; }
+        public List<ParticipantDTO> Winners { get; set; }
     }
 }
