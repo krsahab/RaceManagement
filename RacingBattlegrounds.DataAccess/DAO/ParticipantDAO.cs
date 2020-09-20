@@ -34,15 +34,15 @@ namespace RacingBattlegrounds.DataAccess.DAO
         {
             using (var context = new ApplicationDBContext())
             {
-                var participant = context.Participants
-                    .Include(x => x.Driver)
-                    .Include(x => x.Car)
-                    .Include(x => x.Race)
-                    .FirstOrDefault(x => x.Id == Participant.Id);
+                Participant.Race.Track = null;
+                var participant = context.Participants.FirstOrDefault(x => x.Id == Participant.Id);
                 context.Entry(participant).CurrentValues.SetValues(Participant);
                 participant.Driver = Participant.Driver;
                 participant.Car = Participant.Car;
                 participant.Race = Participant.Race;
+                context.Entry(participant.Driver).State = EntityState.Unchanged;
+                context.Entry(participant.Race).State = EntityState.Unchanged;
+                context.Entry(participant.Car).State = EntityState.Unchanged;
                 context.SaveChanges();
             }
         }
@@ -50,7 +50,11 @@ namespace RacingBattlegrounds.DataAccess.DAO
         {
             using (var context = new ApplicationDBContext())
             {
+                Participant.Race.Track = null;
                 context.Participants.Add(Participant);
+                context.Entry(Participant.Driver).State = EntityState.Unchanged;
+                context.Entry(Participant.Race).State = EntityState.Unchanged;
+                context.Entry(Participant.Car).State = EntityState.Unchanged;
                 context.SaveChanges();
             }
         }
