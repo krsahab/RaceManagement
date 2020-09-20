@@ -6,34 +6,44 @@ namespace RacingBattlegrounds.DataAccess.DAO
 {
     public static class CarDetailsDAO
     {
-        private static readonly ApplicationDBContext context;
-        static CarDetailsDAO()
-        {
-            context = new ApplicationDBContext();
-        }
         public static List<Car> GetCars()
         {
-            return context.Cars.ToList();
+            using (var context = new ApplicationDBContext())
+            {
+                return context.Cars.ToList();
+            }
         }
         public static Car GetCarDetails(int Id)
         {
-            return context.Cars.Find(Id);
+            using (var context = new ApplicationDBContext())
+            {
+                return context.Cars.Find(Id);
+            }
         }
         public static void UpdateCarDetails(Car car)
         {
-            context.Entry(car).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            using (var context = new ApplicationDBContext())
+            {
+                context.Entry(car).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
         public static void AddCar(Car car)
         {
-            context.Cars.Add(car);
-            context.SaveChanges();
+            using (var context = new ApplicationDBContext())
+            {
+                context.Cars.Add(car);
+                context.SaveChanges();
+            }
         }
         public static void DeleteCar(int Id)
         {
-            Car car = context.Cars.Find(Id);
-            context.Cars.Remove(car);
-            context.SaveChanges();
+            using (var context = new ApplicationDBContext())
+            {
+                Car car = context.Cars.Find(Id);
+                context.Cars.Remove(car);
+                context.SaveChanges();
+            }
         }
     }
 }
